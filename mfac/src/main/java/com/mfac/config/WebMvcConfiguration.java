@@ -1,5 +1,6 @@
 package com.mfac.config;
 
+import com.mfac.json.JacksonObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -33,7 +34,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     @Bean
     public Docket docket() {
         Contact contact = new Contact(
-                "FreshStuptMan", "", ""     // 作者姓名
+                "FreshStuptMan", "", ""
         );
         ApiInfo apiInfo = new ApiInfoBuilder()
                 .title("MFAC接口文档")
@@ -63,13 +64,13 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      * 扩展 Spring MVC 消息转换器 统一消息格式
      * @param converters
      */
-//    protected void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-//        log.info("扩展消息转换器...");
-//        // 创建一个消息转换器对象
-//        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-//        // 为该消息转换器设置一个对象转换器(将java对象按指定格式序列化为json数据)
-//        converter.setObjectMapper(new JacksonObjectMapper());
-//        // 将自定义消息转换器放入容器中，并设置在最前方，最先执行
-//        converters.add(0,converter);
-//    }
+    protected void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        log.info("扩展消息转换器...");
+        // 创建一个消息转换器对象
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        // 为该消息转换器设置一个对象转换器(将java对象按指定格式序列化为json数据)
+        converter.setObjectMapper(new JacksonObjectMapper());
+        // 将自定义消息转换器放入容器中，并设置在最前方，最先执行
+        converters.add(0,converter);
+    }
 }

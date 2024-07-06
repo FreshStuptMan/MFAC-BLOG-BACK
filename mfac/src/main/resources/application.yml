@@ -1,3 +1,4 @@
+
 spring:
   application:
     name: mfac
@@ -10,3 +11,11 @@ spring:
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
+#JWT
+jwt:
+  secret-key: MFAC
+  ttl: 7200000
+  token-name: token
+  user-id: userId
+server:
+  port: 8081
