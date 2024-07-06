@@ -1,5 +1,6 @@
 package com.mfac.config;
 
+import com.mfac.interceptor.AdminInterceptor;
 import com.mfac.json.JacksonObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +26,19 @@ import java.util.List;
 public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
 
+    @Resource
+    private AdminInterceptor adminInterceptor;
 
+
+    /**
+     * 注册拦截器
+     * @param registry
+     */
+    @Override
+    protected void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(adminInterceptor)
+                .addPathPatterns("/admin/**");
+    }
 
     /**
      * 通过knife4j生成接口文档
