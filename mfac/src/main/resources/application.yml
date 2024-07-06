@@ -1,4 +1,3 @@
-
 spring:
   application:
     name: mfac
@@ -11,6 +10,15 @@ spring:
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
+
+
+#Mybatis
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.mfac.pojo.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
 #JWT
 jwt:
   secret-key: MFAC

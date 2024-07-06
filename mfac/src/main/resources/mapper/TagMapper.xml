@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mfac.mapper.TagMapper">
+    <!--  创建标签  -->
+    <insert id="create">
+        insert into tag(id, name, color, creator_id, create_time, update_time)
+        values (#{id}, #{name}, #{color}, #{creatorId}, #{createTime}, #{updateTime})
+    </insert>
+    <!--  获取标签列表  -->
+    <select id="list" resultType="com.mfac.pojo.vo.TagListVO">
+        select t.*, creator.name as creatorName from tag t
+        join user as creator on creator.id = t.creator_id
+        <where>
+            <if test="name != null and name != ''">t.name like concat('%',#{name}, '%')</if>
+        </where>
+    </select>
+    <!--  更新标签  -->
+    <update id="update">
+        update tag
+        <set>
+            <if test="name != '' and name != null">name = #{name},</if>
+            <if test="color != '' and color != null">color = #{color},</if>
+            update_time = #{updateTime},
+        </set>
+        where id = #{id}
+    </update>
+</mapper>
