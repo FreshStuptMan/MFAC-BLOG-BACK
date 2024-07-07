@@ -10,7 +10,11 @@ spring:
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
-
+  #File Size
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 20MB
 
 #Mybatis
 mybatis:
@@ -25,5 +29,10 @@ jwt:
   ttl: 7200000
   token-name: token
   user-id: userId
+
+#AliOSS
+alioss:
+
+
 server:
   port: 8081
