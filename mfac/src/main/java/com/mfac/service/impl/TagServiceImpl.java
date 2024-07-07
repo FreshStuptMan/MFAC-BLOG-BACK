@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class TagServiceImpl implements TagService {
@@ -89,5 +90,14 @@ public class TagServiceImpl implements TagService {
     @Override
     public Integer delete(Long id) {
         return tagMapper.delete(id);
+    }
+
+    /**
+     * 获取所有标签
+     * @return
+     */
+    @Override
+    public List<Tag> listAll() {
+        return tagMapper.listAll();
     }
 }

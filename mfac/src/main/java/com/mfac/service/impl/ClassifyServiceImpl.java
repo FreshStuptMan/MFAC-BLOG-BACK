@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -91,5 +92,15 @@ public class ClassifyServiceImpl implements ClassifyService {
     @Override
     public Integer delete(Long id) {
         return classifyMapper.delete(id);
+    }
+
+
+    /**
+     * 获取所有分类
+     * @return
+     */
+    @Override
+    public List<Classify> listAll() {
+        return classifyMapper.listAll();
     }
 }

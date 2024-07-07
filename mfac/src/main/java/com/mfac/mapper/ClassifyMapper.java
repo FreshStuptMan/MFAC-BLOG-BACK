@@ -4,10 +4,11 @@ import com.github.pagehelper.Page;
 import com.mfac.pojo.dto.ClassifyListDTO;
 import com.mfac.pojo.entity.Classify;
 import com.mfac.pojo.vo.ClassifyListVO;
-import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 @Mapper
 public interface ClassifyMapper {
@@ -58,4 +59,11 @@ public interface ClassifyMapper {
      */
     @Delete("delete from classify where id = #{id}")
     Integer delete(Long id);
+
+    /**
+     * 获取所有分类
+     * @return
+     */
+    @Select("select * from classify")
+    List<Classify> listAll();
 }

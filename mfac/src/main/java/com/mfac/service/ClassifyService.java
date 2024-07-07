@@ -4,6 +4,8 @@ import com.mfac.pojo.PageResult;
 import com.mfac.pojo.dto.ClassifyListDTO;
 import com.mfac.pojo.entity.Classify;
 
+import java.util.List;
+
 public interface ClassifyService {
     /**
      * 创建分类
@@ -48,4 +50,10 @@ public interface ClassifyService {
      * @return
      */
     Integer delete(Long id);
+
+    /**
+     * 获取所有分类
+     * @return
+     */
+    List<Classify> listAll();
 }

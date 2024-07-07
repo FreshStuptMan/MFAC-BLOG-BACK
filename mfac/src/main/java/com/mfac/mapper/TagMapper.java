@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface TagMapper {
     /**
@@ -56,4 +58,40 @@ public interface TagMapper {
      */
     @Delete("delete from tag where id = #{id}")
     Integer delete(Long id);
+
+    /**
+     * 获取所有标签
+     * @return
+     */
+    @Select("select * from tag")
+    List<Tag> listAll();
+
+
+    /**
+     * 博客-标签关系表相关
+     */
+
+
+    /**
+     * 向博客-标签关系表中插入数据
+     * @param tagIds
+     * @param blogId
+     * @return
+     */
+    Integer createBlogTagBatch(List<Long> tagIds, Long blogId);
+
+    /**
+     * 根据博客编号查询标签
+     * @param blogId
+     * @return
+     */
+    List<Tag> listFromBlogTagByBlogId(Long blogId);
+
+    /**
+     * 根据博客编号删除
+     * @param blogId
+     * @return
+     */
+    @Delete("delete from blog_tag where blog_id = #{blogId}")
+    Integer deleteBlogTagByBlogId(Long blogId);
 }

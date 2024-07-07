@@ -5,6 +5,8 @@ import com.mfac.pojo.PageResult;
 import com.mfac.pojo.dto.TagListDTO;
 import com.mfac.pojo.entity.Tag;
 
+import java.util.List;
+
 public interface TagService {
     /**
      * 创建标签
@@ -47,4 +49,10 @@ public interface TagService {
      * @return
      */
     Integer delete(Long id);
+
+    /**
+     * 获取所有标签
+     * @return
+     */
+    List<Tag> listAll();
 }

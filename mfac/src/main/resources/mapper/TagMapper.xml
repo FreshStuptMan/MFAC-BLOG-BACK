@@ -25,4 +25,19 @@
         </set>
         where id = #{id}
     </update>
+
+
+    <!--  向博客-标签关系表中插入数据  -->
+    <insert id="createBlogTagBatch">
+        insert into blog_tag(blog_id, tag_id)
+        values
+        <foreach collection="tagIds" item="tagId" separator=",">
+            (#{blogId}, #{tagId})
+        </foreach>
+    </insert>
+    <!--  根据博客编号查询标签  -->
+    <select id="listFromBlogTagByBlogId" resultType="com.mfac.pojo.entity.Tag">
+        select t.* from tag t
+        where t.id in (select tag_id from blog_tag where blog_id = #{blogId})
+    </select>
 </mapper>
