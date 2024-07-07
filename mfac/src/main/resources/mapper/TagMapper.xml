@@ -12,7 +12,7 @@
         select t.*, creator.name as creatorName from tag t
         join user as creator on creator.id = t.creator_id
         <where>
-            <if test="name != null and name != ''">t.name like concat('%',#{name}, '%')</if>
+            <if test="name != null and name != ''">and t.name like concat('%',#{name}, '%')</if>
         </where>
     </select>
     <!--  更新标签  -->
