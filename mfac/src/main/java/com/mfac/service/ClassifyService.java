@@ -3,6 +3,7 @@ package com.mfac.service;
 import com.mfac.pojo.PageResult;
 import com.mfac.pojo.dto.ClassifyListDTO;
 import com.mfac.pojo.entity.Classify;
+import com.mfac.pojo.vo.ClassifyListVO;
 
 import java.util.List;
 
@@ -62,4 +63,7 @@ public interface ClassifyService {
      * @return
      */
     List<Classify> random();
+
+
+    List<ClassifyListVO> listAllWithTotal();
 }

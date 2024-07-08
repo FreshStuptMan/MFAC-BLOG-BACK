@@ -8,6 +8,7 @@ import com.mfac.mapper.TagMapper;
 import com.mfac.pojo.PageResult;
 import com.mfac.pojo.dto.BlogCreateDTO;
 import com.mfac.pojo.dto.BlogListDTO;
+import com.mfac.pojo.dto.BlogSearchDTO;
 import com.mfac.pojo.dto.BlogUpdateDTO;
 import com.mfac.pojo.entity.Blog;
 import com.mfac.pojo.vo.BlogDetailVO;
@@ -144,5 +145,19 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<BlogListVO> newest() {
         return blogMapper.newest();
+    }
+
+
+    /**
+     * 搜索博客
+     * @param blogSearchDTO
+     * @return
+     */
+    @Override
+    public PageResult search(BlogSearchDTO blogSearchDTO) {
+        PageHelper.startPage(blogSearchDTO.getPageNum(), blogSearchDTO.getPageSize());
+        Page<BlogListVO> page = blogMapper.search(blogSearchDTO);
+        PageResult result = new PageResult(page.getTotal(), page.getResult());
+        return result;
     }
 }

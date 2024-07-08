@@ -2,6 +2,7 @@ package com.mfac.mapper;
 
 import com.github.pagehelper.Page;
 import com.mfac.pojo.dto.BlogListDTO;
+import com.mfac.pojo.dto.BlogSearchDTO;
 import com.mfac.pojo.entity.Blog;
 import com.mfac.pojo.vo.BlogDetailVO;
 import com.mfac.pojo.vo.BlogListVO;
@@ -62,4 +63,11 @@ public interface BlogMapper {
      * @return
      */
     List<BlogListVO> newest();
+
+    /**
+     * 搜索博客
+     * @param blogSearchDTO
+     * @return
+     */
+    Page<BlogListVO> search(BlogSearchDTO blogSearchDTO);
 }

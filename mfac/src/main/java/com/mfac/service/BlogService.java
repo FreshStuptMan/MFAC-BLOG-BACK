@@ -3,6 +3,7 @@ package com.mfac.service;
 import com.mfac.pojo.PageResult;
 import com.mfac.pojo.dto.BlogCreateDTO;
 import com.mfac.pojo.dto.BlogListDTO;
+import com.mfac.pojo.dto.BlogSearchDTO;
 import com.mfac.pojo.dto.BlogUpdateDTO;
 import com.mfac.pojo.entity.Blog;
 import com.mfac.pojo.vo.BlogDetailVO;
@@ -59,5 +60,12 @@ public interface BlogService {
      * @return
      */
     List<BlogListVO> newest();
+
+    /**
+     * 搜索博客
+     * @param blogSearchDTO
+     * @return
+     */
+    PageResult search(BlogSearchDTO blogSearchDTO);
 
 }

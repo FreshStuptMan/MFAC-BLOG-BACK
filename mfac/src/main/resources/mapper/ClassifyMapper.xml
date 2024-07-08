@@ -9,11 +9,13 @@
     </insert>
     <!--  获取分类列表  -->
     <select id="list" resultType="com.mfac.pojo.vo.ClassifyListVO">
-        select c.*,creator.name as creatorName from classify c
+        select c.*,creator.name as creatorName, COUNT(b.id) as blogTotal from classify c
         join user as creator on creator.id = c.creator_id
+        left join blog as b on b.classify_id = c.id
         <where>
             <if test="name != '' and name != null">and c.name like concat('%', #{name}, '%')</if>
         </where>
+        group by c.id
     </select>
     <!--  更新分类  -->
     <update id="update">
@@ -25,4 +27,11 @@
         </set>
         where id = #{id}
     </update>
+
+    <select id="listAllWithTotal" resultType="com.mfac.pojo.vo.ClassifyListVO">
+        select c.*,creator.name as creatorName,COUNT(b.id) as blogTotal from classify c
+        join user as creator on creator.id = c.creator_id
+        left join blog as b on b.classify_id = c.id
+        group by c.id
+    </select>
 </mapper>

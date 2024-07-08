@@ -113,4 +113,10 @@ public class ClassifyServiceImpl implements ClassifyService {
     public List<Classify> random() {
         return classifyMapper.random();
     }
+
+
+    @Override
+    public List<ClassifyListVO> listAllWithTotal() {
+        return classifyMapper.listAllWithTotal();
+    }
 }

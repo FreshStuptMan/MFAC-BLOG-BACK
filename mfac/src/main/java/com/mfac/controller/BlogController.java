@@ -4,14 +4,12 @@ import com.mfac.constant.BlogConstant;
 import com.mfac.pojo.PageResult;
 import com.mfac.pojo.Result;
 import com.mfac.pojo.dto.BlogListDTO;
+import com.mfac.pojo.dto.BlogSearchDTO;
 import com.mfac.pojo.vo.BlogDetailVO;
 import com.mfac.pojo.vo.BlogListVO;
 import com.mfac.service.BlogService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -65,5 +63,16 @@ public class BlogController {
             return Result.error("博客状态错误");
         }
         return Result.success(detail);
+    }
+
+    /**
+     * 搜索博客
+     * @param blogSearchDTO
+     * @return
+     */
+    @PostMapping("/search")
+    public Result search(@RequestBody BlogSearchDTO blogSearchDTO){
+        PageResult page = blogService.search(blogSearchDTO);
+        return Result.success(page);
     }
 }

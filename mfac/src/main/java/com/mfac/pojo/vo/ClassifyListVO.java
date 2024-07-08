@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClassifyListVO extends Classify {
+    private Integer blogTotal;
     private String creatorName;
 }

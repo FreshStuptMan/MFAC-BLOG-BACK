@@ -73,4 +73,6 @@ public interface ClassifyMapper {
      */
     @Select("select * from classify order by RAND() limit 5")
     List<Classify> random();
+
+    List<ClassifyListVO> listAllWithTotal();
 }
