@@ -109,4 +109,13 @@ public class TagServiceImpl implements TagService {
     public List<Tag> random() {
         return tagMapper.random();
     }
+
+    /**
+     *  获取所有标签，并包括其下的博客数
+     * @return
+     */
+    @Override
+    public List<TagListVO> listAllWithTotal() {
+        return tagMapper.listAllWithTotal();
+    }
 }

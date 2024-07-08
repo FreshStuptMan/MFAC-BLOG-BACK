@@ -4,6 +4,7 @@ package com.mfac.service;
 import com.mfac.pojo.PageResult;
 import com.mfac.pojo.dto.TagListDTO;
 import com.mfac.pojo.entity.Tag;
+import com.mfac.pojo.vo.TagListVO;
 
 import java.util.List;
 
@@ -61,4 +62,10 @@ public interface TagService {
      * @return
      */
     List<Tag> random();
+
+    /**
+     *  获取所有标签，并包括其下的博客数
+     * @return
+     */
+    List<TagListVO> listAllWithTotal();
 }

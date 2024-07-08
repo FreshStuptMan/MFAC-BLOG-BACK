@@ -157,7 +157,12 @@ public class BlogServiceImpl implements BlogService {
     public PageResult search(BlogSearchDTO blogSearchDTO) {
         PageHelper.startPage(blogSearchDTO.getPageNum(), blogSearchDTO.getPageSize());
         Page<BlogListVO> page = blogMapper.search(blogSearchDTO);
-        PageResult result = new PageResult(page.getTotal(), page.getResult());
+        // 设置博客标签
+        List<BlogListVO> list = page.getResult();
+        list.forEach(vo -> {
+            vo.setTags(tagMapper.listFromBlogTagByBlogId(vo.getId()));
+        });
+        PageResult result = new PageResult(page.getTotal(), list);
         return result;
     }
 }

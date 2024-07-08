@@ -73,6 +73,14 @@ public interface TagMapper {
     @Select("select * from tag order by RAND() limit 5")
     List<Tag> random();
 
+    /**
+     *  获取所有标签，并包括其下的博客数
+     * @return
+     */
+    List<TagListVO> listAllWithTotal();
+
+
+
 
     /**
      * 博客-标签关系表相关

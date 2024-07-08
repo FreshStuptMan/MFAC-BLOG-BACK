@@ -9,11 +9,13 @@
     </insert>
     <!--  获取标签列表  -->
     <select id="list" resultType="com.mfac.pojo.vo.TagListVO">
-        select t.*, creator.name as creatorName from tag t
+        select t.*, creator.name as creatorName, COUNT(bt.blog_id) as totalBlog  from tag t
         join user as creator on creator.id = t.creator_id
+        left join blog_tag as bt on bt.tag_id = t.id
         <where>
             <if test="name != null and name != ''">and t.name like concat('%',#{name}, '%')</if>
         </where>
+        group by t.id
     </select>
     <!--  更新标签  -->
     <update id="update">
@@ -25,7 +27,13 @@
         </set>
         where id = #{id}
     </update>
-
+    <!--  获取所有标签，并包括其下的博客数  -->
+    <select id="listAllWithTotal" resultType="com.mfac.pojo.vo.TagListVO">
+        select t.*, creator.name as creatorName, COUNT(bt.blog_id) as totalBlog from tag t
+        join user as creator on creator.id = t.creator_id
+        left join blog_tag as bt on bt.tag_id = t.id
+        group by t.id
+    </select>
 
     <!--  向博客-标签关系表中插入数据  -->
     <insert id="createBlogTagBatch">

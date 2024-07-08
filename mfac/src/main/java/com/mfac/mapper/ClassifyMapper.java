@@ -74,5 +74,9 @@ public interface ClassifyMapper {
     @Select("select * from classify order by RAND() limit 5")
     List<Classify> random();
 
+    /**
+     * 获取所有分类，并且包括相关的博客数
+     * @return
+     */
     List<ClassifyListVO> listAllWithTotal();
 }

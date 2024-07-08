@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TagListVO extends Tag {
+    private Integer totalBlog;
     private String creatorName;
 }

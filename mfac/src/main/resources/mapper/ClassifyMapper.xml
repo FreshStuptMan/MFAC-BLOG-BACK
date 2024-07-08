@@ -27,7 +27,7 @@
         </set>
         where id = #{id}
     </update>
-
+    <!--  获取所有分类，并且包括相关的博客数  -->
     <select id="listAllWithTotal" resultType="com.mfac.pojo.vo.ClassifyListVO">
         select c.*,creator.name as creatorName,COUNT(b.id) as blogTotal from classify c
         join user as creator on creator.id = c.creator_id

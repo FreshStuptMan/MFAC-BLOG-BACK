@@ -64,6 +64,9 @@ public interface ClassifyService {
      */
     List<Classify> random();
 
-
+    /**
+     * 获取所有分类，并且包括相关的博客数
+     * @return
+     */
     List<ClassifyListVO> listAllWithTotal();
 }

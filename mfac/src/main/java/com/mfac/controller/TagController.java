@@ -2,6 +2,7 @@ package com.mfac.controller;
 
 import com.mfac.pojo.Result;
 import com.mfac.pojo.entity.Tag;
+import com.mfac.pojo.vo.TagListVO;
 import com.mfac.service.TagService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +36,16 @@ public class TagController {
     @GetMapping("/random")
     public Result random() {
         List<Tag> list = tagService.random();
+        return Result.success(list);
+    }
+
+    /**
+     *  获取所有标签，并包括其下的博客数
+     * @return
+     */
+    @GetMapping("/listAllWithTotal")
+    public Result listAllWithTotal() {
+        List<TagListVO> list = tagService.listAllWithTotal();
         return Result.success(list);
     }
 }

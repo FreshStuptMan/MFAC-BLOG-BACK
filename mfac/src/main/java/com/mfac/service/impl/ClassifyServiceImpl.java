@@ -114,7 +114,10 @@ public class ClassifyServiceImpl implements ClassifyService {
         return classifyMapper.random();
     }
 
-
+    /**
+     * 获取所有分类，并且包括相关的博客数
+     * @return
+     */
     @Override
     public List<ClassifyListVO> listAllWithTotal() {
         return classifyMapper.listAllWithTotal();
