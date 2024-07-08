@@ -64,6 +64,9 @@ public class AdminClassifyController {
      */
     @DeleteMapping("/delete/{id}")
     public Result delete(@PathVariable Long id) {
+        if(classifyService.countBlogByIdForDelete(id) > 0) {
+            return Result.error("删除失败，该分类下存在博客");
+        }
         classifyService.delete(id);
         return Result.success();
     }

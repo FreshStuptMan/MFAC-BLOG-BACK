@@ -69,4 +69,11 @@ public interface ClassifyService {
      * @return
      */
     List<ClassifyListVO> listAllWithTotal();
+
+    /**
+     * 用于删除前判断该分类下是否有标签
+     * @param id
+     * @return
+     */
+    Integer countBlogByIdForDelete(Long id);
 }

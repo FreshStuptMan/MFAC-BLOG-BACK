@@ -122,4 +122,14 @@ public class ClassifyServiceImpl implements ClassifyService {
     public List<ClassifyListVO> listAllWithTotal() {
         return classifyMapper.listAllWithTotal();
     }
+
+    /**
+     * 用于删除前判断该分类下是否有标签
+     * @param id
+     * @return
+     */
+    @Override
+    public Integer countBlogByIdForDelete(Long id) {
+        return classifyMapper.countBlogByIdForDelete(id);
+    }
 }

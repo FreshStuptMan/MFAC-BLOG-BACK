@@ -79,4 +79,12 @@ public interface ClassifyMapper {
      * @return
      */
     List<ClassifyListVO> listAllWithTotal();
+
+    /**
+     * 用于删除前判断该分类下是否有标签
+     * @param id
+     * @return
+     */
+    @Select("select COUNT(id) from blog where blog.classify_id = #{id}")
+    Integer countBlogByIdForDelete(Long id);
 }

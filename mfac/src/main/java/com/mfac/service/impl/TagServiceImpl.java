@@ -118,4 +118,14 @@ public class TagServiceImpl implements TagService {
     public List<TagListVO> listAllWithTotal() {
         return tagMapper.listAllWithTotal();
     }
+
+    /**
+     * 用于删除前判断该标签下是否有博客
+     * @param id
+     * @return
+     */
+    @Override
+    public Integer countBlogByIdForDelete(Long id) {
+        return tagMapper.countBlogByIdForDelete(id);
+    }
 }

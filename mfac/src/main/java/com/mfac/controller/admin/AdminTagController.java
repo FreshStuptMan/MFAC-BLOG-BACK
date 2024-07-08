@@ -64,6 +64,9 @@ public class AdminTagController {
      */
     @DeleteMapping("/delete/{id}")
     public Result delete(@PathVariable Long id) {
+        if(tagService.countBlogByIdForDelete(id) > 0) {
+            return Result.error("删除失败，该标签下存在博客");
+        }
         tagService.delete(id);
         return Result.success();
     }

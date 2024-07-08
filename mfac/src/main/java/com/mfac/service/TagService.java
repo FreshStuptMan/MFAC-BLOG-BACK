@@ -68,4 +68,11 @@ public interface TagService {
      * @return
      */
     List<TagListVO> listAllWithTotal();
+
+    /**
+     * 用于删除前判断该标签下是否有博客
+     * @param id
+     * @return
+     */
+    Integer countBlogByIdForDelete(Long id);
 }

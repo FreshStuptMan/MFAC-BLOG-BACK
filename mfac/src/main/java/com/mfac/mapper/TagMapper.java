@@ -110,4 +110,12 @@ public interface TagMapper {
     @Delete("delete from blog_tag where blog_id = #{blogId}")
     Integer deleteBlogTagByBlogId(Long blogId);
 
+    /**
+     * 用于删除前判断该标签下是否有博客
+     * @param id
+     * @return
+     */
+    @Select("select COUNT(blog_id) from blog_tag where tag_id = #{id}")
+    Integer countBlogByIdForDelete(Long id);
+
 }
