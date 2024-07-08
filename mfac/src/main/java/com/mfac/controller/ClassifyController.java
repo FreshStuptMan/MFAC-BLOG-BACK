@@ -2,6 +2,7 @@ package com.mfac.controller;
 
 import com.mfac.pojo.Result;
 import com.mfac.pojo.entity.Classify;
+import com.mfac.pojo.entity.Tag;
 import com.mfac.service.ClassifyService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,16 @@ public class ClassifyController {
     @GetMapping("/listAll")
     public Result listAll() {
         List<Classify> list = classifyService.listAll();
+        return Result.success(list);
+    }
+
+    /**
+     * 随机获取5个分类
+     * @return
+     */
+    @GetMapping("/random")
+    public Result random() {
+        List<Classify> list = classifyService.random();
         return Result.success(list);
     }
 }

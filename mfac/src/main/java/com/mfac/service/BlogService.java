@@ -6,6 +6,9 @@ import com.mfac.pojo.dto.BlogListDTO;
 import com.mfac.pojo.dto.BlogUpdateDTO;
 import com.mfac.pojo.entity.Blog;
 import com.mfac.pojo.vo.BlogDetailVO;
+import com.mfac.pojo.vo.BlogListVO;
+
+import java.util.List;
 
 public interface BlogService {
     /**
@@ -50,4 +53,11 @@ public interface BlogService {
      * @return
      */
     Integer update(BlogUpdateDTO blogUpdateDTO);
+
+    /**
+     * 获取最新的5条博客
+     * @return
+     */
+    List<BlogListVO> newest();
+
 }

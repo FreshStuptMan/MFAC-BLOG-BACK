@@ -103,4 +103,14 @@ public class ClassifyServiceImpl implements ClassifyService {
     public List<Classify> listAll() {
         return classifyMapper.listAll();
     }
+
+
+    /**
+     * 随机获取5个分类
+     * @return
+     */
+    @Override
+    public List<Classify> random() {
+        return classifyMapper.random();
+    }
 }

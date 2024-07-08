@@ -6,13 +6,27 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BlogListVO extends Blog {
+public class BlogListVO
+{
+    private Long id;
+    private String title;
+    private String description;
+    private String avatar;
+    private LocalDateTime createTime;
+    private LocalDateTime updateTime;
+    private LocalDateTime publishTime;
+    private Long authorId;
+    private Integer status;
+    private Long classifyId;
+    private Integer types;
     private String authorName;
+    private String authorAvatar;
     private String classifyName;
     private List<Tag> tags;
 }

@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BlogDetailVO extends Blog {
+    private String authorAvatar;
     private String classifyName;
     private String authorName;
     private List<Tag> tags;

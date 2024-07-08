@@ -56,4 +56,10 @@ public interface ClassifyService {
      * @return
      */
     List<Classify> listAll();
+
+    /**
+     * 随机获取5个分类
+     * @return
+     */
+    List<Classify> random();
 }

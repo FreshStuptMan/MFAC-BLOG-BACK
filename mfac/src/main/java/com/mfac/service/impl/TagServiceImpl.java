@@ -100,4 +100,13 @@ public class TagServiceImpl implements TagService {
     public List<Tag> listAll() {
         return tagMapper.listAll();
     }
+
+    /**
+     *  随机获取5个标签
+     * @return
+     */
+    @Override
+    public List<Tag> random() {
+        return tagMapper.random();
+    }
 }

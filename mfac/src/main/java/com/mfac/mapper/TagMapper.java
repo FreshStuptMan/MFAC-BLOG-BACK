@@ -66,6 +66,13 @@ public interface TagMapper {
     @Select("select * from tag")
     List<Tag> listAll();
 
+    /**
+     * 随机获取5个标签
+     * @return
+     */
+    @Select("select * from tag order by RAND() limit 5")
+    List<Tag> random();
+
 
     /**
      * 博客-标签关系表相关
@@ -94,4 +101,5 @@ public interface TagMapper {
      */
     @Delete("delete from blog_tag where blog_id = #{blogId}")
     Integer deleteBlogTagByBlogId(Long blogId);
+
 }

@@ -27,4 +27,14 @@ public class TagController {
         List<Tag> list = tagService.listAll();
         return Result.success(list);
     }
+
+    /**
+     * 随机获取5个标签
+     * @return
+     */
+    @GetMapping("/random")
+    public Result random() {
+        List<Tag> list = tagService.random();
+        return Result.success(list);
+    }
 }

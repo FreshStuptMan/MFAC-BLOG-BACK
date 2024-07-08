@@ -8,6 +8,8 @@ import com.mfac.pojo.vo.BlogListVO;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface BlogMapper {
 
@@ -54,4 +56,10 @@ public interface BlogMapper {
      * @return
      */
     Integer update(Blog blog);
+
+    /**
+     * 获取最新的5条博客
+     * @return
+     */
+    List<BlogListVO> newest();
 }

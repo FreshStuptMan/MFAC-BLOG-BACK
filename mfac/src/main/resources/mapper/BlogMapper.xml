@@ -13,7 +13,7 @@
     </insert>
     <!--  获取博客列表  -->
     <select id="list" resultType="com.mfac.pojo.vo.BlogListVO">
-        select b.*, author.name as authorName, c.name as classifyName
+        select b.*, author.name as authorName, author.avatar as authorAvatar, c.name as classifyName
         from blog b
         join user as author on author.id = b.author_id
         join classify as c on c.id = b.classify_id
@@ -43,7 +43,7 @@
     </update>
     <!--  获取博客详情  -->
     <select id="detail" resultType="com.mfac.pojo.vo.BlogDetailVO">
-        select b.*, author.name as authorName, c.name as classifyName
+        select b.*, author.name as authorName, author.avatar as authorAvatar, c.name as classifyName
         from blog b
         join user as author on author.id = b.author_id
         join classify as c on c.id = b.classify_id
@@ -60,7 +60,17 @@
             <if test="avatar != '' and avatar != null">avatar = #{avatar},</if>
             <if test="description != '' and description != null">description = #{description},</if>
             <if test="status != null">status = #{status},</if>
+            <if test="publishTime != null">publish_time = #{publishTime}</if>
         </set>
         where id = #{id}
     </update>
+    <!--  获取最新的5条博客  -->
+    <select id="newest" resultType="com.mfac.pojo.vo.BlogListVO">
+        select b.*, author.name as authorName, author.avatar as authorAvatar, c.name as classifyName
+        from blog b
+        join user as author on author.id = b.author_id
+        join classify as c on c.id = b.classify_id
+        order by b.publish_time
+        limit 5
+    </select>
 </mapper>

@@ -136,4 +136,13 @@ public class BlogServiceImpl implements BlogService {
         blogMapper.update(blog);
         return null;
     }
+
+    /**
+     * 获取最新的五条博客
+     * @return
+     */
+    @Override
+    public List<BlogListVO> newest() {
+        return blogMapper.newest();
+    }
 }

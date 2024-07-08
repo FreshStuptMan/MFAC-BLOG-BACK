@@ -55,4 +55,10 @@ public interface TagService {
      * @return
      */
     List<Tag> listAll();
+
+    /**
+     * 随机获取5个标签
+     * @return
+     */
+    List<Tag> random();
 }

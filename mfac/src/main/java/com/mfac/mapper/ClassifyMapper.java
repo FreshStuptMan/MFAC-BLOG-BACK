@@ -66,4 +66,11 @@ public interface ClassifyMapper {
      */
     @Select("select * from classify")
     List<Classify> listAll();
+
+    /**
+     * 随机获取5个分类
+     * @return
+     */
+    @Select("select * from classify order by RAND() limit 5")
+    List<Classify> random();
 }
