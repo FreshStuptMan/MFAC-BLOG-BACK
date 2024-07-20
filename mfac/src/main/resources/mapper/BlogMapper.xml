@@ -70,7 +70,8 @@
         from blog b
         join user as author on author.id = b.author_id
         join classify as c on c.id = b.classify_id
-        order by b.publish_time
+        where b.status = 2
+        order by b.publish_time DESC
         limit 5
     </select>
     <!-- 搜索博客   -->
