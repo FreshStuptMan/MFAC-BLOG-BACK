@@ -6,10 +6,7 @@ import com.mfac.pojo.dto.ToolTypeListDTO;
 import com.mfac.pojo.entity.ToolType;
 import com.mfac.service.ToolTypeService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -28,6 +25,9 @@ public class AdminToolTypeController {
      */
     @PostMapping("/create")
     public Result create(@RequestBody ToolType toolType) {
+        if(toolTypeService.countByNameForCreate(toolType) > 0) {
+            return Result.error("创建失败，该类型名称已被使用");
+        }
         toolTypeService.create(toolType);
         return Result.success();
     }
@@ -42,5 +42,33 @@ public class AdminToolTypeController {
     public Result list(@RequestBody ToolTypeListDTO toolTypeListDTO) {
         PageResult page = toolTypeService.list(toolTypeListDTO);
         return Result.success(page);
+    }
+
+    /**
+     * 更新工具类型信息
+     * @param toolType
+     * @return
+     */
+    @PostMapping("/update")
+    public Result update(@RequestBody ToolType toolType) {
+        if(toolTypeService.countByNameForUpdate(toolType) > 0) {
+            return Result.error("更新失败，该类型名称已被使用");
+        }
+        toolTypeService.update(toolType);
+        return Result.success();
+    }
+
+    /**
+     * 删除工具类型
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/delete/{id}")
+    public Result delete(@PathVariable Long id) {
+        if(toolTypeService.countToolByIdForDelete(id) > 0) {
+            return Result.error("删除失败，该类型下存在工具");
+        }
+        toolTypeService.delete(id);
+        return Result.success();
     }
 }

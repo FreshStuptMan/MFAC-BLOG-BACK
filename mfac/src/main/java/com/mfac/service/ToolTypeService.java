@@ -19,4 +19,41 @@ public interface ToolTypeService {
      * @return
      */
     PageResult list(ToolTypeListDTO toolTypeListDTO);
+
+    /**
+     * 更新工具类型信息
+     * @param toolType
+     * @return
+     */
+    Integer update(ToolType toolType);
+
+    /**
+     * 用于创建时判断类型名称是否重复
+     * @param toolType
+     * @return
+     */
+    Integer countByNameForCreate(ToolType toolType);
+
+
+    /**
+     * 用于更新时判断类型名称是否重复
+     * @param toolType
+     * @return
+     */
+    Integer countByNameForUpdate(ToolType toolType);
+
+
+    /**
+     * 用于删除时判断该类型下是否有工具
+     * @param id
+     * @return
+     */
+    Integer countToolByIdForDelete(Long id);
+
+    /**
+     * 删除工具类型
+     * @param id
+     * @return
+     */
+    Integer delete(Long id);
 }

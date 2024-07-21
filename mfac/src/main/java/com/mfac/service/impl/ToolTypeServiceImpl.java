@@ -47,4 +47,56 @@ public class ToolTypeServiceImpl implements ToolTypeService {
         PageResult result = new PageResult(page.getTotal(), page.getResult());
         return result;
     }
+
+
+    /**
+     * 更新工具类型信息
+     * @param toolType
+     * @return
+     */
+    @Override
+    public Integer update(ToolType toolType) {
+        return toolTypeMapper.update(toolType);
+    }
+
+    /**
+     * 用于创建时判断类型名称是否重复
+     * @param toolType
+     * @return
+     */
+    @Override
+    public Integer countByNameForCreate(ToolType toolType) {
+        return toolTypeMapper.countByNameForCreate(toolType);
+    }
+
+    /**
+     * 用于更新时判断类型名称是否重复
+     * @param toolType
+     * @return
+     */
+    @Override
+    public Integer countByNameForUpdate(ToolType toolType) {
+        return toolTypeMapper.countByNameForUpdate(toolType);
+    }
+
+    /**
+     * 用于删除时判断该类型下是否有工具
+     * @param id
+     * @return
+     */
+    @Override
+    public Integer countToolByIdForDelete(Long id) {
+        return toolTypeMapper.countToolByIdForDelete(id);
+    }
+
+
+    /**
+     * 删除工具类型
+     * @param id
+     * @return
+     */
+    @Override
+    public Integer delete(Long id) {
+        return toolTypeMapper.delete(id);
+    }
 }

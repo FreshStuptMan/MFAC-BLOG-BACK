@@ -9,8 +9,20 @@
     </insert>
     <!--  获取工具类型列表  -->
     <select id="list" resultType="com.mfac.pojo.vo.ToolTypeListVO">
-        select tt.*,creator.name as creatorName, COUNT(t.id) as totalType from tool_type tt
+        select tt.*,creator.name as creatorName, COUNT(t.id) as totalTool from tool_type tt
         left join user as creator on creator.id = tt.creator_id
         left join tool as t on t.tool_type_id = tt.id
+        <where>
+            <if test="name != null and name != ''">and tt.name like concat('%', #{name}, '%')</if>
+        </where>
+        group by tt.id
     </select>
+    <!--  更新工具类型信息  -->
+    <update id="update">
+        update tool_type
+        <set>
+            <if test="name != null and name != ''">name = #{name},</if>
+        </set>
+        where id = #{id}
+    </update>
 </mapper>
