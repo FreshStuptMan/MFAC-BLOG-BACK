@@ -86,7 +86,7 @@ public class BlogServiceImpl implements BlogService {
      */
     @Override
     public Integer changeStatus(Blog blog) {
-        if(blog.getStatus().equals(BlogConstant.BLOG_STATUS_UP)) {
+        if (blog.getStatus().equals(BlogConstant.BLOG_STATUS_UP) && blog.getPublishTime() == null) {
             blog.setPublishTime(LocalDateTime.now());
         }
         return blogMapper.changeStatus(blog);
@@ -126,7 +126,8 @@ public class BlogServiceImpl implements BlogService {
     public Integer update(BlogUpdateDTO blogUpdateDTO) {
         Blog blog = new Blog();
         BeanUtils.copyProperties(blogUpdateDTO, blog);
-        if(blog.getStatus().equals(BlogConstant.BLOG_STATUS_UP)) {
+        blog.setUpdateTime(LocalDateTime.now());
+        if (blog.getStatus().equals(BlogConstant.BLOG_STATUS_UP) && blog.getPublishTime() == null) {
             blog.setPublishTime(LocalDateTime.now());
         }
         blog.setUpdateTime(LocalDateTime.now());

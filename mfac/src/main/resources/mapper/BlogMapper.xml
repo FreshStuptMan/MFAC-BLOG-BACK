@@ -60,7 +60,8 @@
             <if test="avatar != '' and avatar != null">avatar = #{avatar},</if>
             <if test="description != '' and description != null">description = #{description},</if>
             <if test="status != null">status = #{status},</if>
-            <if test="publishTime != null">publish_time = #{publishTime}</if>
+            <if test="publishTime != null">publish_time = #{publishTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime}</if>
         </set>
         where id = #{id}
     </update>
