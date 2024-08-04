@@ -1,11 +1,16 @@
 package com.mfac.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.mfac.mapper.ToolMapper;
 import com.mfac.mapper.ToolTypeMapper;
 import com.mfac.pojo.PageResult;
 import com.mfac.pojo.dto.ToolTypeListDTO;
+import com.mfac.pojo.entity.Tool;
 import com.mfac.pojo.entity.ToolType;
+import com.mfac.pojo.vo.ToolTypeDetailVO;
 import com.mfac.pojo.vo.ToolTypeListVO;
 import com.mfac.service.ToolTypeService;
 import com.mfac.util.SnowFlakeUtil;
@@ -14,12 +19,17 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class ToolTypeServiceImpl implements ToolTypeService {
     @Resource
     private ToolTypeMapper toolTypeMapper;
 
+    @Resource
+    private ToolMapper toolMapper;
 
     /**
      * 创建工具分类
@@ -98,5 +108,31 @@ public class ToolTypeServiceImpl implements ToolTypeService {
     @Override
     public Integer delete(Long id) {
         return toolTypeMapper.delete(id);
+    }
+
+    /**
+     * 获取所有工具类型
+     * @return
+     */
+    @Override
+    public List<ToolType> listAll() {
+        return toolTypeMapper.listAll();
+    }
+
+
+    /**
+     * 获取所有工具类型和其下的所有工具
+     * @return
+     */
+    @Override
+    public List<ToolTypeDetailVO> listDetailAll() {
+        List<ToolType> types = listAll();
+        List<ToolTypeDetailVO> result = BeanUtil.copyToList(types, ToolTypeDetailVO.class);
+        List<Tool> tools = toolMapper.listAll();
+        Map<Long, List<Tool>> map = tools.stream().collect(Collectors.groupingBy(Tool::getToolTypeId));
+        result.forEach(detail -> {
+            detail.setTools(map.get(detail.getId()));
+        });
+        return result;
     }
 }

@@ -3,6 +3,9 @@ package com.mfac.service;
 import com.mfac.pojo.PageResult;
 import com.mfac.pojo.dto.ToolTypeListDTO;
 import com.mfac.pojo.entity.ToolType;
+import com.mfac.pojo.vo.ToolTypeDetailVO;
+
+import java.util.List;
 
 public interface ToolTypeService {
 
@@ -56,4 +59,16 @@ public interface ToolTypeService {
      * @return
      */
     Integer delete(Long id);
+
+    /**
+     * 获取所有工具类型
+     * @return
+     */
+    List<ToolType> listAll();
+
+    /**
+     * 获取所有工具类型和其下的所有工具
+     * @return
+     */
+    List<ToolTypeDetailVO> listDetailAll();
 }

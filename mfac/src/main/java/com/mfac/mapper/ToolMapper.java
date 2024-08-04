@@ -6,6 +6,9 @@ import com.mfac.pojo.entity.Tool;
 import com.mfac.pojo.vo.ToolListVO;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 @Mapper
 public interface ToolMapper {
@@ -39,4 +42,11 @@ public interface ToolMapper {
      * @return
      */
     Integer update(Tool tool);
+
+    /**
+     * 获取所有工具
+     * @return
+     */
+    @Select("select * from tool")
+    List<Tool> listAll();
 }
