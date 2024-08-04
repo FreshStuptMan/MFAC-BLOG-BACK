@@ -24,7 +24,7 @@
             <if test="name != null and name != ''">name = #{name},</if>
             <if test="description != null and description != ''">description = #{description},</if>
             <if test="link != null and link != ''">link = #{link},</if>
-            <if test="avatar != null and avatar != ''">avatar = #{avatar},</if>
+            <if test="avatar != null">avatar = #{avatar},</if>
             <if test="toolTypeId != null">tool_type_id = #{toolTypeId},</if>
             <if test="color != null and color != ''">color = #{color},</if>
         </set>
