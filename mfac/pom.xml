@@ -44,6 +44,21 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <scope>compile</scope>
         </dependency>
+        <!--   AOP    -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <!--    消息队列AMQP    -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <!--   邮箱操作	-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
         <!--    Mybatis    -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
