@@ -10,13 +10,5 @@ import javax.annotation.Resource;
 @SpringBootTest
 class MfacApplicationTests {
 
-    @Resource
-    private RabbitMQUtil rabbitMQUtil;
-    @Test
-    void contextLoads() {
-        Long id = SnowFlakeUtil.create();
-        System.out.println("id: "+id);
-        rabbitMQUtil.EmailMessageSender(id);
-    }
 
 }
