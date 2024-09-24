@@ -21,7 +21,6 @@ public class EmailUtil {
      * @param friendLink
      */
     public void FriendLinkUpEmailSender(FriendLink friendLink) {
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
         String friendLinkInfo = FriendLinkInfo(friendLink, EmailConstant.FRIEND_LINK_UP_NOTIFY_EMAIL);
         // 拼接和设置正文
         String text = friendLink.getAuthor()+ EmailConstant.FRIEND_LINK_UP_EMAIL_TEXT +friendLinkInfo;
@@ -34,7 +33,6 @@ public class EmailUtil {
      * @param friendLink
      */
     public void FriendLinkDownEmailSender(FriendLink friendLink) {
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
         String friendLinkInfo = FriendLinkInfo(friendLink, EmailConstant.FRIEND_LINK_DOWN_NOTIFY_EMAIL);
         // 拼接和设置正文
         String text = friendLink.getAuthor()+ EmailConstant.FRIEND_LINK_DOWN_EMAIL_TEXT +friendLinkInfo;
@@ -42,6 +40,29 @@ public class EmailUtil {
         EmailSender(friendLink.getEmail(), text, EmailConstant.FRIEND_LINK_DOWN_EMAIL_TITLE);
     }
 
+    /**
+     * 手动发送友链上架通知邮件
+     * @param friendLink
+     */
+    public void FriendLinkUpEmailHandSender(FriendLink friendLink, String email) {
+        String friendLinkInfo = FriendLinkInfo(friendLink, EmailConstant.FRIEND_LINK_UP_NOTIFY_EMAIL);
+        // 拼接和设置正文
+        String text = friendLink.getAuthor()+ EmailConstant.FRIEND_LINK_UP_EMAIL_TEXT +friendLinkInfo;
+        // 发送邮件
+        EmailSender(email, text, EmailConstant.FRIEND_LINK_UP_EMAIL_TITLE);
+    }
+
+    /**
+     * 手动发送友链下架通知邮件
+     * @param friendLink
+     */
+    public void FriendLinkDownHandEmailSender(FriendLink friendLink, String email) {
+        String friendLinkInfo = FriendLinkInfo(friendLink, EmailConstant.FRIEND_LINK_DOWN_NOTIFY_EMAIL);
+        // 拼接和设置正文
+        String text = friendLink.getAuthor()+ EmailConstant.FRIEND_LINK_DOWN_EMAIL_TEXT +friendLinkInfo;
+        // 发送邮件
+        EmailSender(email, text, EmailConstant.FRIEND_LINK_DOWN_EMAIL_TITLE);
+    }
 
     /**
      * 通用邮件发送
@@ -68,7 +89,7 @@ public class EmailUtil {
      * @param friendLink
      * @return
      */
-    public String FriendLinkInfo(FriendLink friendLink, Integer emailType) {
+    private String FriendLinkInfo(FriendLink friendLink, Integer emailType) {
         String friendLinkInfo = "";
         if (EmailConstant.FRIEND_LINK_UP_NOTIFY_EMAIL.equals(emailType)) {
             friendLinkInfo = "{\n" +

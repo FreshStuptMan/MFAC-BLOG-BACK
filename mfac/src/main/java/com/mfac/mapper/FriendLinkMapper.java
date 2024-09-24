@@ -4,11 +4,11 @@ import com.github.pagehelper.Page;
 import com.mfac.pojo.dto.FriendLinkListDTO;
 import com.mfac.pojo.entity.FriendLink;
 import com.mfac.pojo.vo.FriendLinkListVO;
-import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 @Mapper
 public interface FriendLinkMapper {
@@ -31,7 +31,7 @@ public interface FriendLinkMapper {
      * @param friendLinkListDTO
      * @return
      */
-    Page<FriendLinkListVO> list(FriendLinkListDTO friendLinkListDTO);
+    Page<FriendLink> list(FriendLinkListDTO friendLinkListDTO);
 
     /**
      * 获取友链详情
@@ -55,4 +55,10 @@ public interface FriendLinkMapper {
      * @return
      */
     Integer update(FriendLink friendLink);
+
+    /**
+     * 获取所有上架友链
+     * @return
+     */
+    List<FriendLinkListVO> listAllUp();
 }

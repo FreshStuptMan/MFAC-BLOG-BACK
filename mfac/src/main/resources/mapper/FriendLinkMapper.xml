@@ -8,9 +8,9 @@
         values (#{id}, #{name}, #{link}, #{description}, #{avatar}, #{author}, #{email}, #{color}, #{createTime}, #{updateTime}, #{status}, #{downReason})
     </insert>
     <!--  获取友链列表  -->
-    <select id="list" resultType="com.mfac.pojo.vo.FriendLinkListVO">
+    <select id="list" resultType="com.mfac.pojo.entity.FriendLink">
         select
-            id, name, link, description, avatar, author, color, create_time, update_time, status, down_reason
+            id, name, link, description, avatar, author, color, email,create_time, update_time, status, down_reason
         from
             friend_link
         <where>
@@ -25,9 +25,9 @@
         <set>
             <if test="name != '' and name != null">name = #{name},</if>
             <if test="link != '' and link != null">link = #{link},</if>
-            <if test="description != '' and description != null">descirption = #{description},</if>
+            <if test="description != '' and description != null">description = #{description},</if>
             <if test="avatar != null and avatar != ''">avatar = #{avatar},</if>
-            <if test="author != null and author = ''">author = #{author},</if>
+            <if test="author != null and author != ''">author = #{author},</if>
             <if test="email != null and email != ''">email = #{email},</if>
             <if test="color != null and color != ''">color = #{color},</if>
             <if test="updateTime != null">update_time = #{updateTime},</if>
@@ -44,4 +44,10 @@
         </set>
         where id = #{id}
     </update>
+    <!--  获取所有上架友链  -->
+    <select id="listAllUp" resultType="com.mfac.pojo.vo.FriendLinkListVO">
+        select
+            id, name, link, description, avatar, author, color
+        from friend_link where status = 1
+    </select>
 </mapper>

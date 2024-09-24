@@ -17,8 +17,4 @@ public class FriendLinkListVO {
     private String avatar;
     private String author;
     private String color;
-    private LocalDateTime createTime;
-    private LocalDateTime updateTime;
-    private Integer status;
-    private String downReason;
 }

@@ -3,7 +3,10 @@ package com.mfac.service;
 import com.mfac.pojo.PageResult;
 import com.mfac.pojo.dto.FriendLinkListDTO;
 import com.mfac.pojo.entity.FriendLink;
+import com.mfac.pojo.vo.FriendLinkListVO;
 import io.swagger.models.auth.In;
+
+import java.util.List;
 
 public interface FriendLinkService {
     /**
@@ -47,4 +50,10 @@ public interface FriendLinkService {
      * @return
      */
     Integer update(FriendLink friendLink);
+
+    /**
+     * 获取所有上架的友链
+     * @return
+     */
+    List<FriendLinkListVO> listAllUp();
 }

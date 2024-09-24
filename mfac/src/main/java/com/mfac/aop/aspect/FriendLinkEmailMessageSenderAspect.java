@@ -5,6 +5,7 @@ import com.mfac.constant.FriendLinkConstant;
 import com.mfac.pojo.entity.FriendLink;
 import com.mfac.pojo.entity.FriendLinkEmailRecord;
 import com.mfac.service.FriendLinkEmailRecordService;
+import com.mfac.service.FriendLinkService;
 import com.mfac.util.RabbitMQUtil;
 import com.mfac.util.SnowFlakeUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,8 @@ import java.time.LocalDateTime;
 public class FriendLinkEmailMessageSenderAspect {
     @Resource
     private FriendLinkEmailRecordService friendLinkEmailRecordService;
-
+    @Resource
+    private FriendLinkService friendLinkService;
     @Resource
     private RabbitMQUtil rabbitMQUtil;
 
@@ -45,10 +47,11 @@ public class FriendLinkEmailMessageSenderAspect {
         if (args.length > 0 && args[0] instanceof FriendLink) {
             // 获取友链信息
             FriendLink friendLink = (FriendLink) args[0];
+            FriendLink db = friendLinkService.detail(friendLink.getId());
             // 记录邮件消息
             FriendLinkEmailRecord record = new FriendLinkEmailRecord();
             record.setId(id);
-            record.setEmail(friendLink.getEmail());
+            record.setEmail(db.getEmail());
             record.setRecordTime(LocalDateTime.now());
             record.setStatus(EmailConstant.SEND_STATUS_SENDING);
             record.setFriendLinkId(friendLink.getId());

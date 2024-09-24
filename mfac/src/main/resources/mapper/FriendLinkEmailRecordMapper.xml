@@ -17,4 +17,16 @@
         </set>
         where id = #{id}
     </update>
+    <!--  获取邮件记录列表  -->
+    <select id="list" resultType="com.mfac.pojo.vo.FriendLinkEmailRecordListVO">
+        select t1.id, t1.email, t1.status, t1.email_type, t1.fault_reason, t1.record_time, t1.friend_link_id, t2.name as friendLinkName
+        from friend_link_email_record t1
+        left join friend_link t2 on t1.friend_link_id = t2.id
+        <where>
+            <if test="email != '' and email != null">and t1.email like concat('%', #{email}, '%')</if>
+            <if test="name != '' and name != null">and t2.name like concat('%', #{name}, '%')</if>
+            <if test="status != null">and t1.status = #{status}</if>
+            <if test="emailType != null">and t1.email_type = #{emailType}</if>
+        </where>
+    </select>
 </mapper>

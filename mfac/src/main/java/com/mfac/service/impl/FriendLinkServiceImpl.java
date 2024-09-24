@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class FriendLinkServiceImpl implements FriendLinkService {
@@ -54,7 +55,7 @@ public class FriendLinkServiceImpl implements FriendLinkService {
     @Override
     public PageResult list(FriendLinkListDTO friendLinkListDTO) {
         PageHelper.startPage(friendLinkListDTO.getPageNum(), friendLinkListDTO.getPageSize());
-        Page<FriendLinkListVO> page = friendLinkMapper.list(friendLinkListDTO);
+        Page<FriendLink> page = friendLinkMapper.list(friendLinkListDTO);
         PageResult result = new PageResult();
         result.setTotal(page.getTotal());
         result.setRecords(page.getResult());
@@ -91,5 +92,14 @@ public class FriendLinkServiceImpl implements FriendLinkService {
     public Integer update(FriendLink friendLink) {
         friendLink.setUpdateTime(LocalDateTime.now());
         return friendLinkMapper.update(friendLink);
+    }
+
+    /**
+     * 获取所有上架的友链
+     * @return
+     */
+    @Override
+    public List<FriendLinkListVO> listAllUp() {
+        return friendLinkMapper.listAllUp();
     }
 }
