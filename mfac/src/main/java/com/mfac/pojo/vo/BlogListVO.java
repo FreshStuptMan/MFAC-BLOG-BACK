@@ -28,5 +28,6 @@ public class BlogListVO
     private String authorName;
     private String authorAvatar;
     private String classifyName;
+    private Integer view;
     private List<Tag> tags;
 }

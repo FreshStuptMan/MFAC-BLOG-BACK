@@ -1,5 +1,7 @@
 package com.mfac.controller;
 
+import com.mfac.aop.annotation.BlogViewAdder;
+import com.mfac.aop.annotation.BlogViewUpdater;
 import com.mfac.constant.BlogConstant;
 import com.mfac.pojo.PageResult;
 import com.mfac.pojo.Result;
@@ -29,6 +31,7 @@ public class BlogController {
      * @return
      */
     @GetMapping("/list/{pageNum}/{pageSize}")
+    @BlogViewAdder
     public Result list(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
         BlogListDTO blogListDTO = new BlogListDTO();
         blogListDTO.setStatus(BlogConstant.BLOG_STATUS_UP);
@@ -54,6 +57,7 @@ public class BlogController {
      * @return
      */
     @GetMapping("/detail/{id}")
+    @BlogViewUpdater
     public Result detail(@PathVariable Long id) {
         BlogDetailVO detail = blogService.detail(id);
         if(detail == null) {
@@ -71,6 +75,7 @@ public class BlogController {
      * @return
      */
     @PostMapping("/search")
+    @BlogViewAdder
     public Result search(@RequestBody BlogSearchDTO blogSearchDTO){
         PageResult page = blogService.search(blogSearchDTO);
         return Result.success(page);

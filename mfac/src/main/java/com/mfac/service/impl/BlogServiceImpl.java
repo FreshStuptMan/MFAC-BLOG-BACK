@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -45,8 +46,8 @@ public class BlogServiceImpl implements BlogService {
         Long id = SnowFlakeUtil.create();
         Blog blog = new Blog();
         BeanUtils.copyProperties(blogCreateDTO, blog);
-
         blog.setId(id);
+        blog.setView(0);
         blog.setAuthorId(ThreadLocalUtil.getCurrentId());
         blog.setCreateTime(LocalDateTime.now());
         blog.setUpdateTime(LocalDateTime.now());
@@ -165,5 +166,15 @@ public class BlogServiceImpl implements BlogService {
         });
         PageResult result = new PageResult(page.getTotal(), list);
         return result;
+    }
+
+    /**
+     * 浏览量批量落库
+     * @param data
+     * @return
+     */
+    @Override
+    public Integer updateViewBatch(Map<Long, Integer> data) {
+        return blogMapper.updateViewBatch(data);
     }
 }

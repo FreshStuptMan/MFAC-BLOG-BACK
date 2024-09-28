@@ -38,6 +38,7 @@ public class FriendLinkEmailMessageSenderAspect {
 
     /**
      * 友链状态成功修改后，投递邮件消息至消息队列
+     * @param joinPoint
      */
     @AfterReturning("FriendLinkEmailMessageSenderPointcut()")
     public void afterReturningAdvice (JoinPoint joinPoint) {

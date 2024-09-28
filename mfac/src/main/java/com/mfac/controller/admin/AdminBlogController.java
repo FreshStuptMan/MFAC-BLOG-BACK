@@ -1,5 +1,6 @@
 package com.mfac.controller.admin;
 
+import com.mfac.aop.annotation.BlogViewAdder;
 import com.mfac.pojo.PageResult;
 import com.mfac.pojo.Result;
 import com.mfac.pojo.dto.BlogCreateDTO;
@@ -37,6 +38,7 @@ public class AdminBlogController {
      * @return
      */
     @PostMapping("/list")
+    @BlogViewAdder
     public Result list(@RequestBody BlogListDTO blogListDTO) {
         PageResult page = blogService.list(blogListDTO);
         return Result.success(page);

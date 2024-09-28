@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface BlogMapper {
@@ -70,4 +71,11 @@ public interface BlogMapper {
      * @return
      */
     Page<BlogListVO> search(BlogSearchDTO blogSearchDTO);
+
+    /**
+     * 浏览量批量落库
+     * @param data
+     * @return
+     */
+    Integer updateViewBatch(Map<Long, Integer> data);
 }

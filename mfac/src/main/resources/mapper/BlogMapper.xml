@@ -6,10 +6,10 @@
     <insert id="create">
         insert into blog(id, title, description, avatar,
                          create_time, update_time, publish_time,
-                         author_id, status, content, classify_id, types)
+                         author_id, status, content, classify_id, types, view)
         values (#{id}, #{title}, #{description}, #{avatar},
                 #{createTime}, #{updateTime}, #{publishTime},
-                #{authorId}, #{status}, #{content}, #{classifyId}, #{types})
+                #{authorId}, #{status}, #{content}, #{classifyId}, #{types}, #{view})
     </insert>
     <!--  获取博客列表  -->
     <select id="list" resultType="com.mfac.pojo.vo.BlogListVO">
@@ -88,4 +88,19 @@
             and status = 2
         </where>
     </select>
+    <!--  浏览量批量落库  -->
+    <update id="updateViewBatch">
+        update blog set view = view +
+        case
+        <foreach collection="data" item="item">
+            when id = #{item.key} then #{item.value}
+        </foreach>
+        else 0
+        end
+        where id in (
+            <foreach collection="data" item="item" separator=",">
+                #{item.key}
+            </foreach>
+        )
+    </update>
 </mapper>
