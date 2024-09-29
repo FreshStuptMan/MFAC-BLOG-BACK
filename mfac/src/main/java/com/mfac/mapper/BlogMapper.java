@@ -8,6 +8,7 @@ import com.mfac.pojo.vo.BlogDetailVO;
 import com.mfac.pojo.vo.BlogListVO;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -77,5 +78,5 @@ public interface BlogMapper {
      * @param data
      * @return
      */
-    Integer updateViewBatch(Map<Long, Integer> data);
+    Integer updateViewBatch(@Param("data") Map<Long, Integer> data);
 }
